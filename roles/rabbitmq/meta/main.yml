@@ -1,0 +1,23 @@
+---
+dependencies:
+  - role: Mayeu.RabbitMQ
+    rabbitmq_plugins:
+      - rabbitmq_management
+      - rabbitmq_management_agent
+      - rabbitmq_shovel
+      - rabbitmq_federation
+      - rabbitmq_shovel_management
+    rabbitmq_vhost_definitions:
+      - name: "{{ main_vhost }}"
+    rabbitmq_users_definitions:
+      - vhost:    "{{ main_vhost }}"
+        user:     user1
+        password: password1
+        read_priv: "^$" # Disallow reading.
+        write_priv: "^$" # Disallow writing.
+      - vhost:    "{{ main_vhost }}"
+        user:     user2
+        password: password2
+        force:    no
+        tags:                # Optional, user tags
+        - administrator

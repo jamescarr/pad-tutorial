@@ -13,10 +13,14 @@
   }],
   "provisioners": [
     {
+      "type": "shell-local",
+      "command": "ansible-galaxy install -p galaxy -r requirements.yml"
+    },
+    {
       "type": "shell",
       "inline": [
         "apt-get update",
-        "apt-get install python -yq"
+        "DEBIAN_INTERACTIVE=false apt-get install python ca-certificates -yq"
       ]
     },
     {
