@@ -1,6 +1,7 @@
 {
   "variables": {
-    "ansible_host": "default",
+    "ansible_host": "",
+    "version": "latest",
     "ansible_connection": "docker",
     "ansible_roles_path": "galaxy"
   },
@@ -35,8 +36,8 @@
     [
       {
         "type": "docker-tag",
-        "repository": "jamescarr/demo",
-        "tag": "0.1"
+        "repository": "jamescarr/{{ user `ansible_host` }}",
+        "tag": "{{ user `version` }}"
       }
     ]
   ]
