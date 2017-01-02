@@ -1,6 +1,7 @@
 ---
 dependencies:
   - role: Mayeu.RabbitMQ
+    rabbitmq_ssl: false
     rabbitmq_plugins:
       - rabbitmq_management
       - rabbitmq_management_agent
@@ -8,16 +9,18 @@ dependencies:
       - rabbitmq_federation
       - rabbitmq_shovel_management
     rabbitmq_vhost_definitions:
-      - name: "{{ main_vhost }}"
+      - name: /faxanadu
+        tracing: yes
     rabbitmq_users_definitions:
-      - vhost:    "{{ main_vhost }}"
+      - vhost:    /faxanadu
         user:     user1
-        password: password1
+        password: password
+        configure_priv: "^$"
         read_priv: "^$" # Disallow reading.
-        write_priv: "^$" # Disallow writing.
+        write_priv: ".*" # allow writing.
       - vhost:    "{{ main_vhost }}"
-        user:     user2
-        password: password2
+        user:     admin
+        password: password
         force:    no
-        tags:                # Optional, user tags
+        tags:
         - administrator

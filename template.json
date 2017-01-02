@@ -3,7 +3,7 @@
     "ansible_host": "",
     "version": "latest",
     "ansible_connection": "docker",
-    "ansible_roles_path": "galaxy"
+    "ansible_roles_path": "galaxy:roles"
   },
   "builders": [{
     "type": "docker",
